@@ -14,8 +14,8 @@ pillow
 
 ```
 pip3 install pillow
-Create a folder called "input" and add images, .jpg, .png etc..
-Create a folder called "output"
+Have a folder called "input" and add images, .jpg, .png etc..
+Have a folder called "output"
 Have a logo ready and ensure it's called "logo.png" transparent works best!
 Run script python3 watermark.py
 Enjoy?
