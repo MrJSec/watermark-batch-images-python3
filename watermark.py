@@ -16,24 +16,21 @@
 #Run script python3 watermark.py
 #Enjoy?
 
-
-#Imports, ensure you have pillow installed.
+import os
 from PIL import Image
-import glob
-from random import random, seed
 
-
-#Watermark, change if needed, please ensure a .png is used.
-watermark = 'logo.png'
-
-
-#Code block.
-def create_watermark():
-
-    main = Image.open(file)
+try:
+    PATH = "./input/"
+    Copy_to_path="./output/"
+    list = os.listdir(PATH)
+    number_files = len(list)
+    watermark ='logo.png'
+    for filename in os.listdir(PATH):
+        main = Image.open(os.path.join(PATH, filename))
     mark = Image.open(watermark)
+    print (number_files, " Pictures where added to the list from: "+PATH+"")
 
-    mask = mark.convert('L').point(lambda x: min(x, 25))
+    mask = mark.convert('L').point(lambda x: min (x, 25))
     mark.putalpha(mask)
 
     mark_width, mark_height = mark.size
@@ -44,16 +41,15 @@ def create_watermark():
 
     tmp_img = Image.new('RGB', main.size)
 
-    for i in range(0, tmp_img.size[0], mark.size[0]):
-        for j  in range(0, tmp_img.size[1], mark.size[1]):
+    for i in range (0, tmp_img.size[0], mark.size[0]):
+        for j in range(0, tmp_img.size[1], mark.size[1]):
             main.paste(mark, (i, j), mark)
             main.thumbnail((8000, 8000), Image.ANTIALIAS)
-    main.save('{}{}{}'.format("./output/",random(),'.png', quality=100))
+        main.save(Copy_to_path+filename+'.png', quality=100)
+    print ("Adding watermark to: "+filename+" was successful [+]")
+    print ("[+] All ",number_files," Pictures were successful [+]\n and saved here: "+Copy_to_path)
 
-
-#Main.
-if __name__ == '__main__':
-        for infile in glob.glob("./input/*"):
-            with open (infile, 'rb+') as file:
-                img = Image.open(file)
-                create_watermark()
+except FileNotFoundError:
+    print ("FileNotFoundError: Please ensure the watermark is correct,and the folders are correct!")
+except:
+    print("Something, something bad has happen here, and this error has happen.")
