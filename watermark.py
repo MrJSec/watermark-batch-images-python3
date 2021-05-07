@@ -48,5 +48,7 @@ try:
 
 except FileNotFoundError:
 	print ("FileNotFoundError: Please ensure the watermark is correct, and the folders are correct!")
+except:
+	print ("An error has occurred, this is a sad time :<")
 else:
 	print ("[+] All ",number_files," Pictures were watermarked and saved here: "+Copy_to_path)
