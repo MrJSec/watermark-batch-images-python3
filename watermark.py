@@ -18,6 +18,7 @@
 
 import os
 from PIL import Image
+
 try:
 	PATH = "./input/"
 	Copy_to_path="./output/"
